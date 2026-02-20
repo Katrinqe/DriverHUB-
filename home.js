@@ -4,16 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/dark-v11',
-        center: [11.0767, 49.4520], // Nürnberg als Default-Startpunkt
+        center: [11.0767, 49.4520], // Nürnberg
         zoom: 15.5,
-        pitch: 60, // Winkel für den 3D-Effekt
+        pitch: 60,
         bearing: -20,
         antialias: true,
-        attributionControl: false
+        attributionControl: false // Entfernt das Mapbox Logo
     });
 
     map.on('style.load', () => {
-        // 3D Gebäude Layer hinzufügen
         const layers = map.getStyle().layers;
         const labelLayerId = layers.find(
             (layer) => layer.type === 'symbol' && layer.layout['text-field']
@@ -29,24 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 'minzoom': 15,
                 'paint': {
                     'fill-extrusion-color': '#1a1a24',
-                    'fill-extrusion-height': [
-                        'interpolate',
-                        ['linear'],
-                        ['zoom'],
-                        15,
-                        0,
-                        15.05,
-                        ['get', 'height']
-                    ],
-                    'fill-extrusion-base': [
-                        'interpolate',
-                        ['linear'],
-                        ['zoom'],
-                        15,
-                        0,
-                        15.05,
-                        ['get', 'min_height']
-                    ],
+                    'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 15, 0, 15.05, ['get', 'height']],
+                    'fill-extrusion-base': ['interpolate', ['linear'], ['zoom'], 15, 0, 15.05, ['get', 'min_height']],
                     'fill-extrusion-opacity': 0.8
                 }
             },
@@ -55,20 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     map.on('load', () => {
-        // Lade-Animation: Warte kurz, damit die Karte rendern kann, dann ausblenden
+        // Kurzer, knackiger Splash Screen (700ms statt vorher 1500ms)
         setTimeout(() => {
             const loader = document.getElementById('loader');
             loader.style.opacity = '0';
             setTimeout(() => {
                 loader.style.display = 'none';
-            }, 800);
-        }, 1500);
+            }, 400); // Entspricht der CSS Transition
+        }, 700);
     });
 
-    // Start Drive Button Logic
     const startDriveBtn = document.querySelector('.start-drive-btn');
     startDriveBtn.addEventListener('click', () => {
-        // Hier kommt später der Übergang zum Drive Hub hin
         console.log('Drive initiated.');
     });
 });
