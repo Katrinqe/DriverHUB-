@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Home</title>
+    
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loader">
+        <img src="logo.png" alt="Logo" class="loader-logo">
+    </div>
+
+    <div id="map"></div>
+
+    <div class="top-fade"></div>
+
+    <div class="top-logo-container">
+        <img src="logo.png" alt="Logo" class="top-logo">
+    </div>
+
+    <div class="bottom-ui">
+        <button class="start-drive-btn">
+            <span class="btn-text">Start Drive</span>
+            <div class="btn-glow"></div>
+        </button>
+
+        <nav class="bottom-nav">
+            <div class="nav-item active">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span>Home</span>
+            </div>
+        </nav>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>
